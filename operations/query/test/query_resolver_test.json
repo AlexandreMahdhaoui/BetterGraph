@@ -1,0 +1,117 @@
+{
+  "test": [
+    {
+      "_id": 0,
+      "name": "Camembert",
+      "region": "Normandie",
+      "nested": {
+        "nested_element": "nested_element",
+        "nested_self": "__NODE__12ze123hnz73lna=",
+        "nested_object_list": [
+          "fromage",
+          "cheese"
+        ]
+      },
+      "other_node": "__NODE__12ze123hnz73lna=",
+      "excluded_projection": "must be excluded",
+      "excluded_output": [
+          "fromage",
+          "cheese"
+      ],
+      "excluded_input": {
+        "must be excluded from": "input"
+      }
+    },
+    {
+      "_id": 1,
+      "name": "Bleu d'Auvergne",
+      "region": "Auvergne",
+      "nested": {
+        "nested_element": "nested_element",
+        "nested_self": "__NODE__12ze123hnz73lna=",
+        "nested_object_list": [
+          "fromage",
+          "cheese"
+        ]
+      },
+      "other_node": "__NODE__12ze123hnz73lna=",
+      "excluded_projection": "must be excluded",
+      "excluded_output": [
+          "fromage",
+          "cheese"
+      ],
+      "excluded_input": {
+        "must be excluded from": "input"
+      }
+    },
+    {
+      "_id": 2,
+      "name": "Beaufort",
+      "region": ["Alpes", "Beaufort"],
+      "nested": {
+        "nested_element": "nested_element",
+        "nested_self": "__NODE__12ze123hnz73lna=",
+        "nested_object_list": [
+          "fromage",
+          "cheese"
+        ]
+      },
+      "other_node": "__NODE__12ze123hnz73lna=",
+      "excluded_projection": "must be excluded",
+      "excluded_output": [
+          "fromage",
+          "cheese"
+      ],
+      "excluded_input": {
+        "must be excluded from": "input"
+      }
+    }
+  ],
+  "assertion": [
+    {
+      "_id": 0,
+      "name": "Camembert",
+      "region": "Normandie",
+      "nested": {
+        "nested_element": "nested_element",
+        "nested_self": "__NODE__12ze123hnz73lna=",
+        "nested_object_list": [
+          "fromage",
+          "cheese"
+        ]
+      },
+      "other_node": "__NODE__12ze123hnz73lna="
+    },
+    {
+      "_id": 1,
+      "name": "Bleu d'Auvergne",
+      "region": "Auvergne",
+      "nested": {
+        "nested_element": "nested_element",
+        "nested_self": "__NODE__12ze123hnz73lna=",
+        "nested_object_list": [
+          "fromage",
+          "cheese"
+        ]
+      },
+      "other_node": "__NODE__12ze123hnz73lna="
+    },
+    {
+      "_id": 2,
+      "name": "Beaufort",
+      "region": [
+        "Alpes",
+        "Beaufort"
+      ],
+      "nested": {
+        "nested_element": "nested_element",
+        "nested_self": "__NODE__12ze123hnz73lna=",
+        "nested_object_list": [
+          "fromage",
+          "cheese"
+        ]
+      },
+      "other_node": "__NODE__12ze123hnz73lna="
+    }
+  ]
+}

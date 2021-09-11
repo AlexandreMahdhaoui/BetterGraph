@@ -1,0 +1,22 @@
+TODO: IN THE PURSUIT OF NESTING: Manage LISTS of types not only types or dictionaries
+
+
+
+
+
+# TODO: Write MUTATION's tests
+
+
+# TODO: Once OPERATIONS are done, Please start looking at SECURITY and ACCESS CONTROL
+
+# TODO: ASYNC calls to MongoDB with MOTOR and Asyncio https://motor.readthedocs.io/en/stable/api-asyncio/asyncio_motor_client.html
+#       However using asynchronicity here seems a bit complicated:
+#           "Do not use the same session for multiple operations concurrently.
+#           A MotorClientSession may only be used with the MotorClient that started it."
+#           Our Query/Mutation classes stores a MongoClient instance and the motor's equivalent can't be called several time apparently
+#           This means we should
+#       MOTOR Tutorial: https://dev.to/svenvarkel/async-await-mongodb-in-python-25bk
+
+
+# TODO: Nested dict with list
+#       https://stackoverflow.com/questions/68786743/create-nested-dict-from-paths-and-values

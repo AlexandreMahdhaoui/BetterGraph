@@ -1,4 +1,0 @@
-USER=dba
-PASSWORD=dba
-DB_NAME=db_0_2_test
-CNX_STR=mongodb+srv://${USER}:${PASSWORD}@cluster0.teg13.mongodb.net/${DB_NAME}?retryWrites=true&w=majority

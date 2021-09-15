@@ -36,7 +36,7 @@ class QueryInputModelConstructor:
             (QueryInputModel,),
             {
                 '__annotations__': {
-                    'name': str,
+                    #'name': str,
                     'query_params': Optional[Dict[str, str]],  # QueryParamsModel,
                     'projection': ProjectionModel
                 }

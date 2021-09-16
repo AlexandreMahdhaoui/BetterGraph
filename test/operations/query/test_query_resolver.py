@@ -1,19 +1,14 @@
 import json
-import os
 import pytest
 from pymongo import MongoClient
 
 from better_graph.operations.query.query_model_constructor import QueryOutputModelConstructor, \
     QueryInputModelConstructor
 from better_graph.operations.query.query_resolver import QueryResolver
+from test.dummies import DummyBaseAdapter
 
 
 class TestQueryResolver:
-    @pytest.fixture()
-    def fixture(self):
-        self.setup()
-        yield
-        self.teardown()
 
     def test_query_resolver_call(self, fixture):
         cursor = self.query_resolver(self.input_data)
@@ -21,8 +16,15 @@ class TestQueryResolver:
         assertion = self.resolved_data
         assert (test == assertion)
 
+    @pytest.fixture()
+    def fixture(self):
+        self.setup()
+        yield
+        self.teardown()
+
     def setup(self) -> None:
-        name = 'fromage'
+        self.name = 'fromage'
+        self.adapter: MongoClient = DummyBaseAdapter()[self.name]
         fields = {
             'name': 'str',
             'region': 'Union[List[str], str]',
@@ -38,22 +40,30 @@ class TestQueryResolver:
             'excluded_input': 'Dict[str, str]',
         }
         self.input_model = QueryInputModelConstructor(
-            name=name,
+            name=self.name,
             projection=fields,
             excluded_input_fields=['excluded_input']
         )
         self.output_model = QueryOutputModelConstructor(
-            name=name,
+            name=self.name,
             fields=fields,
             excluded_output_fields=['excluded_output']
         )
         self.query_resolver = QueryResolver(
-            'fromage',
-            self.output_model.__annotations__
+            name=self.name,
+            base_adapter=DummyBaseAdapter,
+            fields=self.output_model.__annotations__,
+            excluded_query_params=['gt']
         )
+        self._set_input_dict()
+        self._set_base()
 
+    def teardown(self) -> None:
+        self.adapter.drop()
+
+    def _set_input_dict(self):
         self.input_dict: dict = {
-            'name': 'fromage',
+            'name': self.name,
             'query_params': dict(),
             'projection': {
                 'name': 1,
@@ -71,17 +81,10 @@ class TestQueryResolver:
         }
         self.input_data = self.input_model(**self.input_dict)
 
-        cnx_str = os.getenv("CNX_STR")
-        db_name = os.getenv("DB_NAME")
-        self.collection = MongoClient(cnx_str)[db_name]['collection_{}'.format(name)]
-        self.collection.drop()
-        del cnx_str, db_name
-        with open('better_graph/operations/query/test/test_query_resolver.json') as file:
+    def _set_base(self):
+        self.adapter.drop()
+        with open('test/operations/query/test_query_resolver.json') as file:
             data = json.load(file)
             self.documents = data['test']
             self.resolved_data = data['assertion']
-        self.collection.insert_many(self.documents)
-
-    def teardown(self) -> None:
-        self.collection.drop()
-    #   python -m unittest operations/query/test/test_query_resolver.py
+        self.adapter.insert_many(self.documents)

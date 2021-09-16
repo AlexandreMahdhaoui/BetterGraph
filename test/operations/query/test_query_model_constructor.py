@@ -29,7 +29,7 @@ class TestQueryModelConstructor:
             sub_fromage: typing.Optional[typing.Union[str, int]]
 
         class InputModel(QueryInputModel):
-            name: str
+            # name: str
             query_params: typing.Optional[typing.Dict[str, str]]
             projection: FieldsModel
 

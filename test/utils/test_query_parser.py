@@ -23,5 +23,5 @@ class TestQueryParser:
 
 
 if __name__ == '__main__':
-    # python -m unittest utils/test/query_parser_test.py
+    # python -m unittest utils/test/test_query_parser.py
     unittest.main()

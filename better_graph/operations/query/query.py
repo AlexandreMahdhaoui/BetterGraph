@@ -43,4 +43,4 @@ class Query:
     def __call__(self, input_dict: dict):
         input_: QueryInputModel = self.input_model(**input_dict)
         cursor: Iterable = self.resolver(input_)
-        return [self.output_model(**x) for x in cursor]
+        return [self.output_model(**x).dict(skip_defaults=True) for x in cursor]

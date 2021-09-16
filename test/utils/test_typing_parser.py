@@ -81,11 +81,11 @@ class TestTypingParser:
         ]
         intended_error = 'List[Union[str, Dict,int]'
         for t, a in zip(t_, assertion):
-            assert (t, a)
+            assert t == a
         with pytest.raises(SyntaxError):
             tp.parse(intended_error)
 
 
 if __name__ == '__main__':
-    # python -m unittest utils/test/typing_parser_test.py
+    # python -m unittest utils/test/test_typing_parser.py
     unittest.main()

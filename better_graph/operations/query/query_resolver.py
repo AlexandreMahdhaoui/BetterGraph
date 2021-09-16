@@ -8,7 +8,6 @@ class QueryResolver:
         TODO: Refactor db_client to call a BetterBase? or BetterAdapter? class
             > We don't want to create the db_client instance here but rather ask for a distant library to create
               it from a default_config file
-
     """
     def __init__(
             self,
@@ -30,7 +29,7 @@ class QueryResolver:
         return self.base_adapter.find(query_params, projection)
 
     def _parse_and_validate_query_params(self, query_params):
-        query_params_ = QueryParser.parse(query_params)
+        query_params_ = QueryParser.parse(query_params, excluded_params=self.excluded_query_params)
         query_params_ = {
             k: v for k, v in query_params_.items() if
             k in self.valid_projection_fields and k not in self.excluded_query_params
@@ -42,7 +41,7 @@ class QueryResolver:
         for k, v in projection.items():
             if isinstance(v, dict) and k in valid_fields:
                 projection_[k] = self._validate_projection(v, valid_fields[k])
-            if k in valid_fields:
+            elif k in valid_fields and str(v) == '1':
                 projection_[k] = 1
         return projection_
 

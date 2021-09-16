@@ -32,9 +32,10 @@
   "test": {
     "name": "fromage",
     "query_params": {
-      "price__lte": 6.00
+      "price__lte": 6.00,
+      "price__gt": 6.00
     },
-    "fields": {
+    "projection": {
       "_id": 1,
       "name": 1,
       "localisation": {
@@ -53,7 +54,7 @@
     }
   },
   "assertion": {
-    "id": "1",
+    "id": "012345678912012345678912",
     "name": "Maroilles",
     "localisation": {
       "country": "France",
@@ -67,14 +68,11 @@
         "__NODE__J30a2e3jaz18zEe12393ze="
       ]
     },
-    "price": "5.98",
-    "should_be": "excluded_by_projection",
-    "input_exclude": "blabla",
-    "output_exclude": "blablabla"
+    "price": 5.98
   },
   "documents": [
     {
-      "_id": "0",
+      "_id": "012345678901012345678901",
       "name": "Camembert",
       "localisation": {
         "country": "France",
@@ -98,7 +96,7 @@
       "output_exclude": "blablabla"
     },
     {
-      "_id": "1",
+      "_id": "012345678912012345678912",
       "name": "Maroilles",
       "localisation": {
         "country": "France",

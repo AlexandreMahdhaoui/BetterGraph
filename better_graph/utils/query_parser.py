@@ -39,4 +39,4 @@ class QueryParser:
 
     @classmethod
     def validate_excluded_params(cls, excluded_params: typing.List[str]):
-        return [p for p in excluded_params if excluded_params in cls.valid_params]
+        return [p for p in excluded_params if p in cls.valid_params]

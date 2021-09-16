@@ -8,12 +8,10 @@ cnx_str = os.getenv("CNX_STR")
 db_name = os.getenv("DB_NAME")
 
 
-
 class DummyBaseAdapter:
     _namespace = {
         'fromage': MongoClient(cnx_str)[db_name]['collection_{}'.format('fromage')]
     }
-    print(_namespace['fromage'])
 
     def __class_getitem__(cls, item: str) -> MongoClient:
         return cls._namespace[item]

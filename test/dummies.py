@@ -4,12 +4,16 @@ import dotenv
 from pymongo import MongoClient
 
 dotenv.load_dotenv('.env.test.mongo_db')
+cnx_str = os.getenv("CNX_STR")
+db_name = os.getenv("DB_NAME")
+
 
 
 class DummyBaseAdapter:
     _namespace = {
-        'fromage': MongoClient(os.getenv("CNX_STR"))[os.getenv("DB_NAME")]['collection_{}'.format('fromage')]
+        'fromage': MongoClient(cnx_str)[db_name]['collection_{}'.format('fromage')]
     }
+    print(_namespace['fromage'])
 
     def __class_getitem__(cls, item: str) -> MongoClient:
         return cls._namespace[item]

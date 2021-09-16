@@ -76,7 +76,7 @@ class TestQueryResolver:
         self.collection = MongoClient(cnx_str)[db_name]['collection_{}'.format(name)]
         self.collection.drop()
         del cnx_str, db_name
-        with open('better_graph/operations/query/test/query_resolver_test.json') as file:
+        with open('better_graph/operations/query/test/test_query_resolver.json') as file:
             data = json.load(file)
             self.documents = data['test']
             self.resolved_data = data['assertion']
@@ -84,4 +84,4 @@ class TestQueryResolver:
 
     def teardown(self) -> None:
         self.collection.drop()
-    #   python -m unittest operations/query/test/query_resolver_test.py
+    #   python -m unittest operations/query/test/test_query_resolver.py

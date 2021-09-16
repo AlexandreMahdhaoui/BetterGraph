@@ -6,15 +6,13 @@ from devtools import debug
 from pymongo import MongoClient
 
 from better_graph.operations.query.query import Query
-
-
-#  TODO: DONE
+from test.dummies import DummyBaseAdapter
+#  TODO: !!RESOLVED!!
 #   Please find a solution to Pydantic's _id problem
 #       Either don't use Pydantic at all
-#       Or build at resolver method a _id to id converter
+#       Or build a resolver method converting _id to id
 #           For this solution we should implement the use of ObjectID:
 #               bson.objectid.ObjectId(_id).__str__() to get _id as a string
-
 
 class QueryTest:
     @pytest.fixture
@@ -30,11 +28,12 @@ class QueryTest:
         assert(test == assertion)
 
     def setup(self) -> None:
-        with open('better_graph/operations/query/test/query_test.json') as file:
+        with open('better_graph/operations/query/test/test_query.json') as file:
             data = json.load(file)
             self.query = Query(
                 name=data['query_model']['name'],
                 fields=data['query_model']['fields'],
+                base_adapter=DummyBaseAdapter,
                 excluded_query_params=data['query_model']['excluded_query_params'],
                 excluded_input_fields=data['query_model']['excluded_input_fields'],
                 excluded_output_fields=data['query_model']['excluded_output_fields']

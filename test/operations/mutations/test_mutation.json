@@ -1,0 +1,119 @@
+{
+  "query_model":{
+    "name": "fromage",
+    "fields": {
+      "_id": "str",
+      "name": "str",
+      "localisation": {
+        "country": "Union[str, List[str], None]",
+        "region": "Union[str, List[str], None]",
+        "city": "Union[str, List[str], None]"
+      },
+      "gastronomy": {
+        "smell": "Union[str, List[str], None]",
+        "taste": "Union[str, List[str], None]",
+        "similar_cheese": "Union[str, List[str], None]"
+      },
+      "price": "float",
+      "should_be": "str",
+      "input_exclude": "str",
+      "output_exclude": "str"
+    },
+    "excluded_query_params": [
+       "gt"
+    ],
+    "excluded_input_fields": [
+      "input_exclude"
+    ],
+    "excluded_output_fields": [
+      "output_exclude"
+    ]
+  },
+  "test": {
+    "name": "fromage",
+    "query_params": {
+      "price__lte": 6.00,
+      "price__gt": 6.00
+    },
+    "projection": {
+      "_id": 1,
+      "name": 1,
+      "localisation": {
+        "country": 1,
+        "region": 1,
+        "city": 1
+      },
+      "gastronomy": {
+        "smell": 1,
+        "taste": 1,
+        "similar_cheese": 1
+      },
+      "price": 1,
+      "input_exclude": 1,
+      "output_exclude": 1
+    }
+  },
+  "assertion": {
+    "id": "012345678912012345678912",
+    "name": "Maroilles",
+    "localisation": {
+      "country": "France",
+      "region": "Picardie"
+    },
+    "gastronomy": {
+      "smell": "strong",
+      "taste": "Very good",
+      "similar_cheese": [
+        "__NODE__az13e12e3jae93z30J28zE=",
+        "__NODE__J30a2e3jaz18zEe12393ze="
+      ]
+    },
+    "price": 5.98
+  },
+  "documents": [
+    {
+      "_id": "012345678901012345678901",
+      "name": "Camembert",
+      "localisation": {
+        "country": "France",
+        "region": "Normandie"
+      },
+      "gastronomy": {
+        "smell": [
+          "soft",
+          "medium",
+          "hard"
+        ],
+        "taste": [
+          "good",
+          "smooth"
+        ],
+        "similar_cheese": "__NODE__az13e12e3jae93z30J28zE="
+      },
+      "price": "6.01",
+      "should_be": "excluded_by_projection",
+      "input_exclude": "blabla",
+      "output_exclude": "blablabla"
+    },
+    {
+      "_id": "012345678912012345678912",
+      "name": "Maroilles",
+      "localisation": {
+        "country": "France",
+        "region": "Picardie"
+      },
+      "gastronomy": {
+        "smell": "strong",
+        "taste": "Very good",
+        "similar_cheese": [
+          "__NODE__az13e12e3jae93z30J28zE=",
+          "__NODE__J30a2e3jaz18zEe12393ze="
+        ]
+      },
+      "price": "5.98",
+      "should_be": "excluded_by_projection",
+      "input_exclude": "blabla",
+      "output_exclude": "blablabla"
+    }
+  ]
+}

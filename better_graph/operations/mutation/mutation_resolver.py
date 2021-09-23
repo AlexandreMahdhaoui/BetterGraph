@@ -1,4 +1,5 @@
 import os
+from collections import Iterable
 
 from bson.objectid import ObjectId
 
@@ -12,10 +13,10 @@ class MutationResolver:
         self.name = name
         self.base_adapter = base_adapter[name.lower()]
 
-    async def create(self, document):
+    async def create(self, document) -> Iterable:
         return self.base_adapter.insert_one(document.dict())
 
-    async def update(self, document):
+    async def update(self, document) -> Iterable:
         doc = document.dict()
         filter_ = {
             '_id': ObjectId(doc.pop('id'))
@@ -25,7 +26,7 @@ class MutationResolver:
         }
         return self.base_adapter.update_one(filter_, update)
 
-    async def delete(self, document):
+    async def delete(self, document) -> Iterable:
         filter_ = {
             '_id': ObjectId(document.id)
         }

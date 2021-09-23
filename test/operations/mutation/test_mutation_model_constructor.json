@@ -1,0 +1,23 @@
+{
+  "test": {
+    "name": "fromage",
+    "fields": {
+      "id": "str",
+      "name": "str",
+      "timestamp": "str",
+      "country": "Union[List[str], str]",
+      "nested": {
+        "nested_name": "str",
+        "nested_dict": "Dict[str, str]",
+        "nested_self": "str",
+        "nested_parent": "List[str]"
+      }
+    },
+    "excluded_input_fields": [
+      "timestamp"
+    ],
+    "excluded_output_fields": [
+      "country"
+    ]
+  }
+}

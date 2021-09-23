@@ -18,9 +18,9 @@ class BaseModel_(BaseModel):
     @validator('id', check_fields=False)
     def validate_id(cls, v):
         if isinstance(v, str):
-            return ObjectId(v)
+            return ObjectId(v).__str__()
         check_instance(v, ObjectId)
-        return ObjectId
+        return v.__str__()
 
 
 class InputModel(BaseModel_):

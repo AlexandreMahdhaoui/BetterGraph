@@ -1,11 +1,8 @@
-TODO: IN THE PURSUIT OF NESTING: Manage LISTS of types not only types or dictionaries
-
-
-
-
-
 # TODO: Write MUTATION's tests
+# TODO: insert_many/update_many/delete_many
 
+
+TODO: IN THE PURSUIT OF NESTING: Manage LISTS of types not only types or dictionaries
 
 # TODO: Once OPERATIONS are done, Please start looking at SECURITY and ACCESS CONTROL
 
@@ -20,3 +17,4 @@ TODO: IN THE PURSUIT OF NESTING: Manage LISTS of types not only types or diction
 
 # TODO: Nested dict with list
 #       https://stackoverflow.com/questions/68786743/create-nested-dict-from-paths-and-values
+

@@ -50,14 +50,13 @@ class TypingParser:
             excluded_fields: typing.List[str],
             make_optional: bool = False,
             is_query_input: bool = False
-    ):
+    ) -> dict:
         return {
             k: TypingParser.parse(v, key=k, make_optional=make_optional, is_query_input=is_query_input) \
             for k, v in fields.items() \
             if k not in excluded_fields
         }
 
-    # TODO: implement get_class_model returning a model
     @classmethod
     def get_class_model(
             cls,

@@ -1,0 +1,21 @@
+[
+  {
+    "0": "Dict[str, int]",
+    "1": "List[Dict[str, str]]"
+  },
+  {
+    "0": {
+      "0": 0
+    },
+    "1": [{"1": "1"}, {"1": "1"}]
+  },
+  {
+    "0": 'yolo',
+    "1": ['yolo']
+  }
+
+]
+
+from better_graph.utils.better_types.model_factory import ModelFactory
+
+c = ModelFactory(a, types_from_str=True)

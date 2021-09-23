@@ -1,4 +1,34 @@
 {
+  "fields": {
+    "name": "str",
+    "region": "Union[List[str], str]",
+    "nested": {
+      "nested_element": "str",
+      "nested_self": "str",
+      "nested_object_list": "List[str]"
+    },
+    "other_node": "str",
+    "excluded_projection_case_0": "str",
+    "excluded_projection_case_1": "str",
+    "excluded_output": "List[str]",
+    "excluded_input": "Dict[str, str]"
+  },
+  "input_dict": {
+    "name": "fromage",
+    "query_params": {},
+    "projection": {
+      "name": 1,
+      "region": 1,
+      "excluded_output": 1,
+      "excluded_input": 1,
+      "nested": {
+        "nested_element": 1,
+        "nested_self": 1,
+        "nested_parent": 1
+      },
+      "other_kind": 1
+    }
+  },
   "test": [
     {
       "_id": "15",

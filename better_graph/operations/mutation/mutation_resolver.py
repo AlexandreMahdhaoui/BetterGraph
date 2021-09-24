@@ -1,4 +1,3 @@
-import os
 from collections import Iterable
 
 from bson.objectid import ObjectId
@@ -17,12 +16,13 @@ class MutationResolver:
         return self.base_adapter.insert_one(document.dict())
 
     async def update(self, document) -> Iterable:
-        doc = document.dict()
+        if not isinstance(document, dict):
+            document = document.dict()
         filter_ = {
-            '_id': ObjectId(doc.pop('id'))
+            '_id': ObjectId(document.pop('id'))
         }
         update = {
-            '$set': {**doc}
+            '$set': {**document}
         }
         return self.base_adapter.update_one(filter_, update)
 
